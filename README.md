@@ -44,15 +44,15 @@ from collections import Counter
 - Dense (100, Softmax)
 
 **Hasil:**
-- Akurasi Test: 15%
+- Akurasi Test: 44%
 - Total Parameter: 7,405,220
 
 ### Eksperimen 2: CNN dengan Lebih Banyak Epoch (100 epochs)
 **Arsitektur:** Sama dengan Eksperimen 1
 
 **Hasil:**
-- Akurasi Test: 53%
-- Peningkatan signifikan dengan training lebih lama
+- Akurasi Test: 47%
+- Peningkatan sedikit dengan training lebih lama
 
 ### Eksperimen 3: Preprocessing dengan CLAHE
 **Preprocessing:**
@@ -61,8 +61,8 @@ from collections import Counter
 - Normalisasi (0-1)
 
 **Hasil:**
-- Akurasi Test: 51%
-- Sedikit penurunan dari eksperimen 2
+- Akurasi Test: 49%
+- Sedikit kenaikan dari eksperimen 2
 
 ### Eksperimen 4: Transfer Learning dengan MobileNetV3 (25 epochs)
 **Arsitektur:**
@@ -73,9 +73,10 @@ from collections import Counter
 - Base model frozen (tidak dilatih)
 
 **Hasil:**
-- **Akurasi Test: 69%** ✨ (Terbaik)
+- **Akurasi Test: 71%** ✨ (Terbaik)
 - Total Parameter: 3,132,260
 - Trainable Parameter: hanya 135,908
+- Peningkatan signifikan dari keseluruhan eksperimen
 
 ## Struktur Kode
 
@@ -162,23 +163,10 @@ Setiap eksperimen menggunakan:
 
 | Eksperimen | Arsitektur | Epochs | Preprocessing | Akurasi Test | Parameter |
 |------------|------------|---------|---------------|--------------|-----------|
-| 1 | CNN Sederhana | 50 | RGB Normalisasi | 15% | 7.4M |
-| 2 | CNN Sederhana | 100 | RGB Normalisasi | 53% | 7.4M |
-| 3 | CNN Sederhana | 50 | Grayscale + CLAHE | 51% | 7.4M |
-| 4 | MobileNetV3 | 25 | Grayscale + CLAHE + RGB | **69%** | 3.1M |
-
-### Insight Utama
-1. **Transfer learning** memberikan hasil terbaik dengan waktu training lebih singkat
-2. **Jumlah epoch** sangat berpengaruh pada model CNN sederhana (15% → 53%)
-3. **CLAHE preprocessing** tidak memberikan improvement yang signifikan
-4. **MobileNetV3** lebih efisien dalam parameter namun memberikan akurasi tertinggi
-
-## Tantangan dan Keterbatasan
-
-1. **Dataset kecil**: Hanya 3 gambar per subjek untuk training
-2. **Imbalanced performance**: Beberapa subjek memiliki precision 0%
-3. **Overfitting**: Training accuracy mencapai 100% namun validation accuracy hanya ~79%
-4. **Single sample testing**: Setiap subjek hanya memiliki 1 gambar untuk testing
+| 1 | CNN Sederhana | 50 | RGB Normalisasi | 44% | 7.4M |
+| 2 | CNN Sederhana | 100 | RGB Normalisasi | 47% | 7.4M |
+| 3 | CNN Sederhana | 50 | Grayscale + CLAHE | 49% | 7.4M |
+| 4 | MobileNetV3 | 25 | Grayscale + CLAHE + RGB | **71%** | 3.1M |
 
 ## Rekomendasi Pengembangan
 
